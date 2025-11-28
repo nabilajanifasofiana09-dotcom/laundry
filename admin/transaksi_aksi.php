@@ -1,5 +1,5 @@
 <?php
-//menghubungkan dengan koneksi
+// menghubungkan dengan koneksi
 include '../koneksi.php';
 
 // menangkap data yang dikirim dari form
@@ -18,21 +18,21 @@ $harga_per_kilo = mysqli_fetch_assoc($h);
 $harga = $berat * $harga_per_kilo['harga_per_kilo'];
 
 // input data ke tabel transaksi
-mysqli_query($koneksi, "insert into transaksi values('','$tgl_hari_ini','$pelanggan','$berat','$tgl_selesai','$status')");
+mysqli_query($koneksi, "insert into transaksi values('','$tgl_hari_ini','$pelanggan','$harga','$berat','$tgl_selesai','$status')");
 
-// menyimpan id dari data yang di simpan pada query insert sebelumnya
+// menyimpan id dari data yang disimpan pada query insert data sebelumnya
 $id_terakhir = mysqli_insert_id($koneksi);
 
 // menangkap data form input array (jenis pakaian dan jumlah pakaian)
 $jenis_pakaian = $_POST['jenis_pakaian'];
 $jumlah_pakaian = $_POST['jumlah_pakaian'];
 
-// input data cucian berdasarkan id transaksi (invoice) ke table pakaian
-for($x=0;$x<count($jenis_pakaian);$x++){
+// input data cucian berdasarkan id transaksi (invoice) ke tabel pakaian
+for($x=0; $x<count($jenis_pakaian);$x++){
     if($jenis_pakaian[$x] != ""){
-        mysqli_query($koneksi,"insert into pakaian values('','$id_terakhir','$jenis_pakaian[$x]','$jumlah_pakaian[$x]')");
+        mysqli_query($koneksi, "insert into pakaian values('','$id_terakhir','$jenis_pakaian[$x]','$jumlah_pakaian[$x]')");
     }
 }
 
-header("location:transaksi.php");
-?>
+ echo "<script>alert('Data akan disimpan'); window.location.href='transaksi.php'</script>";
+ ?>

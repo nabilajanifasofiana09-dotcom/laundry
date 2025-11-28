@@ -1,8 +1,7 @@
+<?php 
+include 'header.php'; ?>
 <?php
-include 'header.php';
-?>
 
-<?php
 // koneksi database
 include '../koneksi.php';
 ?>
@@ -13,42 +12,26 @@ include '../koneksi.php';
             <h4>Transaksi Laundry Baru</h4>
         </div>
         <div class="panel-body">
+
+
+
             <div class="col-md-8 col-md-offset-2">
                 <a href="transaksi.php" class="btn btn-sm btn-info pull-right">Kembali</a>
-                <br>
-                <br>
-
+                <br/>
+                <br/>
                 <form method="post" action="transaksi_aksi.php">
                     <div class="form-group">
                         <label>Pelanggan</label>
-                        <select class="form-control" name="Pelanggan" required="required">
-                            <option value="">- Pilih Pelanggan</option>
-                            <?php
+                        <select class="form-control" name="pelanggan" required="required">
+                            <option value="">- Pilih Pelanggan -</option>
+                            <?php 
                             // mengambil data pelanggan dari database
                             $data = mysqli_query($koneksi, "select * from pelanggan");
                             // mengubah data ke array dan menampilkannya dengan perulangan while
-                            while ($d = mysqli_fetch_array($data)) {
+                            while($d = mysqli_fetch_array($data)){
                             ?>
-                                <option value="<?php echo $d['pelanggan_id']; ?>">
-                                    <?php echo $d['pelanggan_nama']; ?>
-                                </option>
-                            <?php
-                            }
-                            ?>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Pelanggan</label>
-                        <select class="form-control" name="pelanggan_id">
-                            <?php
-                            $data = mysqli_query($koneksi, "select * from pelanggan");
-                            while ($d = mysqli_fetch_array($data)) {
-                            ?>
-                                <option value="<?php echo $d['pelanggan_id']; ?>">
-                                    <?php echo $d['pelanggan_nama']; ?>
-                                </option>
-                            <?php
+                                <option value="<?php echo $d['pelanggan_id']; ?>"><?php echo $d['pelanggan_nama']; ?></option>
+                            <?php 
                             }
                             ?>
                         </select>
@@ -56,7 +39,7 @@ include '../koneksi.php';
 
                     <div class="form-group">
                         <label>Berat</label>
-                        <input type="number" class="form-control" name="berat" placeholder="Masukkan berat cucian .." required="required">
+                        <input type="number" class="form-control" name="berat" placeholder="Masukkan berat cucian.." required="required">
                     </div>
 
                     <div class="form-group">
@@ -64,12 +47,28 @@ include '../koneksi.php';
                         <input type="date" class="form-control" name="tgl_selesai" required="required">
                     </div>
 
-                    <br>
+                    <br/>
 
                     <table class="table table-bordered table-striped">
                         <tr>
                             <th>Jenis Pakaian</th>
                             <th width="20%">Jumlah</th>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" name="jenis_pakaian[]"></td>
+                            <td><input type="number" class="form-control" name="jumlah_pakaian[]"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" name="jenis_pakaian[]"></td>
+                            <td><input type="number" class="form-control" name="jumlah_pakaian[]"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" name="jenis_pakaian[]"></td>
+                            <td><input type="number" class="form-control" name="jumlah_pakaian[]"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" name="jenis_pakaian[]"></td>
+                            <td><input type="number" class="form-control" name="jumlah_pakaian[]"></td>
                         </tr>
                         <tr>
                             <td><input type="text" class="form-control" name="jenis_pakaian[]"></td>
